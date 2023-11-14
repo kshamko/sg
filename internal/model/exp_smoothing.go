@@ -19,6 +19,6 @@ func NewExpSmooth(alpha, beta, gamma float64) *ExpSmooth {
 }
 
 func (es *ExpSmooth) PredictLTV(y []float64, day int) float64 {
-	res, _ := holtwinters.PredictAdditive(y, len(y), 0.1, 0.25, 0.35, 60-len(y))
+	res, _ := holtwinters.PredictAdditive(y, len(y), es.alpha, es.beta, es.gamma, day-len(y))
 	return res[len(res)-1]
 }

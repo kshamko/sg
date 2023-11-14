@@ -71,7 +71,7 @@ func (p *Predict) Predict(day int) []AggregatorResult {
 			revenue = append(revenue, ltv*float64(row.UserCount))
 		}
 
-		predictedRev := p.model.PredictLTV(revenue, 60)
+		predictedRev := p.model.PredictLTV(revenue, day)
 
 		p.agg.Collect(p.aggKeyFunc(row), predictedRev, row.UserCount)
 	}
